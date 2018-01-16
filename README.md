@@ -14,51 +14,45 @@ Para descargar todas las dependecias y modulos de Node
 
 
 ## Getting Started FrontEnd
+Para instalar las dependencias de angular, (En la carpeta spotyappFrontend).
+```
+  npm install 
+``` 
+
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Instalar Node y CLI de angular. 
+
+GNU/Linux:
 
 ```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+install nodejs
+install npm
+npm install -g @angular/cli
 
 ```
-Give the example
+
+
+## Running 
+
+Primero ejecutar el servidor de  nodejs con el siguiente comando:
 ```
+cd spotyappBackend
+npm start
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
 
 ```
-Give an example
+el log debe de indicar la dirección y el puerto de ejecución, ejemplo:
+
+http:localhost:3977
+
+Ejecutar el servidor de pruebas de angular:
+
 ```
+cd spotyappFrontend
+ng server --open
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
 ```
 
 ## Deployment
@@ -67,23 +61,12 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [MongoDB](https://www.mongodb.com/es) - Base de datos NoSQL
+* [Express](http://expressjs.com/es/) - Framework javascript para nodejs
+* [AngularCli](https://github.com/angular/angular-cli) - Frontend
+* [Nodejs](https://github.com/nodejs/node) - Server Backend
 
-## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
@@ -91,6 +74,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* Javascript
