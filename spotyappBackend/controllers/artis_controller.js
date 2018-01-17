@@ -131,12 +131,7 @@ var ArtisController = {
             message: 'No es posible eliminar el artista'
           });
         } else {
-          /*
-          res.status(200).send({
-            message: 'Se eliminó correctamente el artista',
-            artist: artistRemove
-          });
-          */
+
           Albums.find({
             artist: artistRemove._id
           }).remove((err, albumsRemove) => {
@@ -154,7 +149,7 @@ var ArtisController = {
                   album: albumsRemove._id
                 }).remove((err, songRemove) => {
                   if (err)
-                    res.status(500).send({
+                    return res.status(500).send({
                       message: 'Ocurrio un error al procesar su solicitud'
                     });
                   else {
@@ -180,8 +175,6 @@ var ArtisController = {
     });
   },
   //upload file image to artis
-
-
   uploadFile: function(req, res) {
     var id_artist = req.params.id;
     var file_name = '';

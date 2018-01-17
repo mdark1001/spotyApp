@@ -44,12 +44,27 @@ var AlbumController = {
 
     }
   },
-
   getListaAlbumPage: function(req, res) {
+    var page = req.params.page || 1;
+    var item_by_page = 2;
+    Album.find().sort('year').populate({
+      path: 'artist'
+    }).paginate(page, item_by_page, (err, result) => {
+      if (err)
+        return res.status(404).send({
+          message: 'Error al procesar su solicitud'
+        });
+      res.status(200).send({
+        message: 'Todo bien',
+        data: result
+      })
+    })
+
 
   },
   getAlbumById: function(req, res) {
-    var id_album = res.params.id;
+
+    var id_album = req.params.id;
     if (!id_album) {
       return res.status(404).send({
         message: 'Error no existen los paramentros necesarios'
@@ -57,7 +72,9 @@ var AlbumController = {
     } else {
       Album.find({
         _id: id_album
-      }, (err, albumData) => {
+      }).populate({
+        path: 'artist'
+      }).exec((err, albumData) => {
         if (err || !albumData) {
           return res.status(500).send({
             message: 'Error  no existe el album solicitado'
@@ -70,7 +87,7 @@ var AlbumController = {
 
           });
         }
-      })
+      });
 
     }
 
@@ -102,7 +119,6 @@ var AlbumController = {
           }
         });
     }
-
   },
   setImageAlbum: function(req, res) {
 
