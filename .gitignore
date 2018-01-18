@@ -4,14 +4,14 @@
 ### Angular ###
 ## Angular ##
 # compiled output
-/dist
-/tmp
-/app/**/*.js
-/app/**/*.js.map
+/app_spoty_front/dist
+/app_spoty_front/tmp
+/app_spoty_front/app/**/*.js
+/app_spoty_front/app/**/*.js.map
 
 # dependencies
-/node_modules
-/bower_components
+/app_spoty_front/node_modules
+/app_spoty_front/bower_components
 
 # IDEs and editors
 /.idea
@@ -26,8 +26,8 @@ testem.log
 /typings
 
 # e2e
-/e2e/*.js
-/e2e/*.map
+/app_spoty_front/e2e/*.js
+/app_spoty_front/e2e/*.map
 
 #System Files
 .DS_Store
