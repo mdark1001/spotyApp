@@ -179,7 +179,8 @@ function uploadFile(req, res) {
         } else {
           res.status(200).send({
             message: 'Se  actualizó el usuario correctamente',
-            user: userUpdate
+            user: userUpdate,
+            image: data_update.image
           })
         }
       });
