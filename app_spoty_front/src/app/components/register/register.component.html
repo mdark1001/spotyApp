@@ -1,0 +1,96 @@
+<div class="row mb-12">
+    <div class="col-md-12">
+        <form novalidate role="form" (ngSubmit)="validar_registro_usuario(form)" #form="ngForm">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="nombre" class="col-form-label">Nombre</label>
+                    <input type="text"
+                           class="form-control"
+                           id="nombre"
+                           name="nombre"
+                           [(ngModel)]="usuario.nombre"
+                           required
+                           minlength="3"
+                           placeholder="Nombre">
+                </div>
+                <div class="form-group col-md-6 col-xs-12 col-lg-6">
+                    <label for="apellidop" class="col-form-label">Apellido Paterno</label>
+                    <input type="text" class="form-control"
+                           id="apellidop"
+                           name="apellidop"
+                           [(ngModel)]="usuario.apellidop"
+                           required
+                           placeholder="Apellido Paterno">
+                </div>
+
+                <div class="form-group col-md-6 col-xs-12 col-lg-6">
+                    <label for="apellidom" class="col-form-label">Apellido Materno</label>
+                    <input type="text"
+                           class="form-control"
+                           id="apellidom"
+                           name="apellidom"
+                           [(ngModel)]="usuario.apellidom"
+                           placeholder="Apellido Materno">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email"
+                           required
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                           name="email"
+                           [(ngModel)]="usuario.email"
+                           placeholder="ejemplo@ejemplo.com">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label for="form1-password">Password</label>
+                    <input type="password"
+                           class="form-control"
+                           id="form1-password"
+                           name="password"
+                           [(ngModel)]="usuario.password"
+                           placeholder="Password"
+                           required
+                           minlength="5"
+                    >
+                </div>
+                <div class="col-md-12 mb-12">
+                    <label for="form1-state">State</label>
+                    <select class="custom-select d-block col-md-8" id="form1-state"
+                            name="estado"
+                            [(ngModel)]="usuario.id_estado"
+                            required>
+                        <option value="">Seleccione una opción</option>
+                        <option *ngFor="let estado_index of this.estados"
+                                value="{{estado_index._id}}">{{estado_index.estado}}
+                        </option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-3 mb-4">
+                    <label class="custom-control custom-checkbox d-block my-2">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               name="confirmacion"
+                               [(ngModel)]="usuario.confirmacion"
+                               required>
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Confirmo</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-12">
+                    <button type="submit"
+                            class="btn btn-outline-success">Registrar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
