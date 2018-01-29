@@ -8,7 +8,7 @@ export class CatalogosService {
     uri_source: string = '';
 
     constructor(private http: Http) {
-        this.uri_source= AppSettings.API_ENDPOINT + 'catalogo/';
+        this.uri_source = AppSettings.API_ENDPOINT + 'catalogo/';
         console.log(this.uri_source);
     }
 

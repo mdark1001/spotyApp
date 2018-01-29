@@ -6,22 +6,22 @@ import {Router} from "@angular/router";
     selector: 'app-login',
     templateUrl: './login.component.html',
     styles: [`
-        div.ng-invalid.ng-touched:not(form){
-            color :#a94442;
+        div.ng-invalid.ng-touched:not(form) {
+            color: #a94442;
             border-color: #a94442 !important;
-            border:1px solid  #a94442 !important;
+            border: 1px solid #a94442 !important;
             box-shadow: 0 0 10px #ce001c;
         }
-    
+
     `]
 })
 export class LoginComponent implements OnInit {
     usuario_login: Object = {
-        email:'ejemplo@gmail.com',
-        password:'password'
+        email: 'ejemplo@gmail.com',
+        password: 'password'
     };
 
-    constructor(public router:Router) {
+    constructor(public router: Router) {
     }
 
     ngOnInit() {
@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
         console.log(this.usuario_login);
         console.log("Mensaje de posteo");
     }
-    registro(){
+
+    registro() {
         this.router.navigate(['registro']);
     }
 

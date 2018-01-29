@@ -2,12 +2,11 @@
     <form (ngSubmit)="valida_login_form(formLogin)" #formLogin="ngForm" novalidate>
         <div class="row">
             <div class="form-group col-xs-12 col-lg-12 col-md-12">
-                <div class="input-group is-invalid">
-                     <span class="input-group-addon">
-                                <i class="fa fa-user"></i>
+                <div class="input-group">
+                     <span class=" input-group-addon ">
+                                <i class="fa  fa-user"></i>
                      </span>
-                    <input type="text" class="form-control is-invalid"
-
+                    <input type="text" class="form-control"
                            id="form1-username"
                            required
                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
@@ -36,7 +35,6 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <button type="submit"
-
                         class="btn btn-outline-info">Iniciar sesión</button>
                 <button class="btn btn-outline-dark" (click)="registro()" >
                     Registras

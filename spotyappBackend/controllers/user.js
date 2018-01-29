@@ -15,12 +15,17 @@ function pruebas(req, res) {
 function saveUser(req, res) {
   var user = new User();
   var params = req.body;
+  console.log(params);
 
-  user.name = params.name;
-  user.surname = params.surname;
+  user.nombre = params.nombre;
+  user.apellidop = params.apellidop;
+  user.apellidom = params.apellidom;
   user.email = params.email.toLowerCase();
+  user.id_estado = params.id_estado;
   user.role = 'ROLE_ADMIN';
   user.image = 'null';
+
+
   if (params.password) {
     //
     bcrypt.hash(params.password, null, null, function(err, hash) {
