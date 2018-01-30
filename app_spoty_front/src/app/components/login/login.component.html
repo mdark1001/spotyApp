@@ -1,47 +1,57 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <form (ngSubmit)="valida_login_form(formLogin)" #formLogin="ngForm" novalidate>
-        <div class="row">
-            <div class="form-group col-xs-12 col-lg-12 col-md-12">
-                <div class="input-group">
+<div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="alert alert-danger" *ngIf="this.is_ready &&  this.LoginData.invalid">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Existen algunos campos que son obligatorios</strong>
+        </div>
+        <div class="alert" [ngClass]="this.mostrar_alert.class_css" *ngIf="mostrar_alert.is_valid">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>{{this.mostrar_alert.msg}}</strong>
+        </div>
+        <form [formGroup]="LoginData" (ngSubmit)="valida_login_form(formLogin)" novalidate>
+            <input type="hidden" formControlName="gethash" value="true">
+            <div class="row">
+                <div class="form-group col-xs-12 col-lg-12 col-md-12">
+                    <div class="input-group">
                      <span class=" input-group-addon ">
                                 <i class="fa  fa-user"></i>
                      </span>
-                    <input type="text" class="form-control"
-                           id="form1-username"
-                           required
-                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                           name="email"
-                           [(ngModel)]="usuario_login.email"
-                           placeholder="Email">
+                        <input type="text"
+                               class="form-control"
+                               [ngClass]="{error:mostrar_errors('email',is_ready)}"
+                               id="form1-username"
+                               formControlName="email"
+
+                               placeholder="Email">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group col-xs-12 col-lg-12 col-md-12">
-                <div class="input-group">
+                <div class="form-group col-xs-12 col-lg-12 col-md-12">
+                    <div class="input-group">
                      <span class="input-group-addon">
                         <i class="fa fa-lock"></i>
                     </span>
-                    <input type="password"
-                           class="form-control"
-                           id="form1-email"
-                           required
-                           minlength="5"
-                           name="password"
-                           [(ngModel)]="usuario_login.password"
-                           placeholder="Contraseña">
+                        <input type="password"
+                               class="form-control"
+                               [ngClass]="{error:mostrar_errors('password',is_ready)}"
+                               formControlName="password"
+                               placeholder="Contraseña">
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <button type="submit"
-                        class="btn btn-outline-info">Iniciar sesión</button>
-                <button class="btn btn-outline-dark" (click)="registro()" >
-                    Registras
-                </button>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <button type="submit"
+                            class="btn btn-outline-info">Iniciar sesión
+                    </button>
+                    <button class="btn btn-outline-dark" (click)="registro()">
+                        Registras
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
 
 
+    </div>
 </div>

@@ -1,14 +1,18 @@
 import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from "@angular/router";
+import {Observable} from "rxjs/Observable";
 
-// Se encarga de consumir el token y validar la sesión
 @Injectable()
-export class AuthGuardService {
+export class AuthGuardService implements CanActivate {
+
 
     constructor() {
+
     }
 
-    public isAuthenticated(): boolean {
-        return false;
+    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
+        return true;
     }
+
 
 }

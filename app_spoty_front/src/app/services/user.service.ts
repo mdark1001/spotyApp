@@ -20,6 +20,12 @@ export class UserService {
            return data.json();
         });
     }
+    login(data){
+        const url = `${this.url_app}/login`;
+        const headers = this.getHeader();
+        return this._http.post(url,data,{headers}).map(data=>data.json());
+    }
+
     getHeader() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');

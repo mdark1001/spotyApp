@@ -7,6 +7,7 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {LoginComponent} from './components/login/login.component';
 import { SingupComponent } from './components/singup/singup.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
@@ -18,8 +19,10 @@ import {APP_ROUTING} from "./app.routers";
 /*Services*/
 import {AuthGuardService} from "./services/auth-guard.service";
 import {CatalogosService} from "./services/catalogos.service";
-
 import {UserService} from "./services/user.service";
+
+
+import {Auth0Service} from "app/services/auth0.service";
 
 @NgModule({
     declarations: [
@@ -28,7 +31,8 @@ import {UserService} from "./services/user.service";
         FooterComponent,
         LoginComponent,
         RegisterComponent,
-        SingupComponent
+        SingupComponent,
+        DashboardComponent
 
     ],
     imports: [
@@ -41,7 +45,8 @@ import {UserService} from "./services/user.service";
     providers: [
         AuthGuardService,
         CatalogosService,
-        UserService
+        UserService,
+        Auth0Service
     ],
     bootstrap: [AppComponent]
 })
