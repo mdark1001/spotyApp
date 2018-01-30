@@ -10,7 +10,12 @@ export class Auth0Service {
     }
 
     isAuthenticated() {
+        let token=localStorage.getItem('tk_plug');
+        if(token!=null && token !=undefined){
+             return true;
+        }
         return false;
     }
+
 
 }

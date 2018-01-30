@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validator, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {Auth0Service} from "../../services/auth0.service";
 
 @Component({
     selector: 'app-login',
@@ -21,8 +22,10 @@ export class LoginComponent implements OnInit {
         is_valid: false,
     });
 
-    constructor(public router: Router, private userLogin: UserService) {
-
+    constructor(public router: Router, private userLogin: UserService,private _auth0:Auth0Service) {
+        if(this._auth0.isAuthenticated()){
+            this.router.navigate(['/dashboard']);
+        }
         this.LoginData = new FormGroup({
             'email': new FormControl('miguel.cabrera.app@gmail.com', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
             'password': new FormControl('password', [Validators.required, Validators.minLength(5)]),

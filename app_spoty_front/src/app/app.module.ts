@@ -23,6 +23,7 @@ import {UserService} from "./services/user.service";
 
 
 import {Auth0Service} from "app/services/auth0.service";
+import { ArtistComponent } from './components/artist/artist.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import {Auth0Service} from "app/services/auth0.service";
         LoginComponent,
         RegisterComponent,
         SingupComponent,
-        DashboardComponent
+        DashboardComponent,
+        ArtistComponent
 
     ],
     imports: [
