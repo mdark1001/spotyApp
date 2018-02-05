@@ -4,6 +4,7 @@ import {SingupComponent} from "./components/singup/singup.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {AuthGuardService} from './services/auth-guard.service';
 import {ArtistComponent} from "./components/artist/artist.component";
+import {ProfileComponent} from "./components/profile/profile.component";
 
 const app_routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -16,6 +17,11 @@ const app_routes: Routes = [
         path: 'artist', component: ArtistComponent,
         canActivate: [AuthGuardService]
     },
+    {
+        path: 'perfil/:id', component: ProfileComponent,
+        canActivate: [AuthGuardService]
+    },
+
     {path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];
 

@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
                     this.mostrar_alert.class_css = 'alert-success';
                     this.mostrar_alert.msg = 'Todo salió bien';
                     localStorage.setItem('tk_plug', data.token);
+                    localStorage.setItem('user_data',JSON.stringify(data.user_data));
                     this.router.navigate(['dashboard'])
                 } else {
                     this.mostrar_alert.class_css = 'alert-danger';

@@ -15,15 +15,26 @@ export class UserService {
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
-       return this._http.post(url, params, {headers}).map(data => {
-           console.log(data);
-           return data.json();
+        return this._http.post(url, params, {headers}).map(data => {
+            console.log(data);
+            return data.json();
         });
     }
-    login(data){
+
+    login(data) {
         const url = `${this.url_app}/login`;
         const headers = this.getHeader();
-        return this._http.post(url,data,{headers}).map(data=>data.json());
+        return this._http.post(url, data, {headers}).map(data => data.json());
+    }
+
+    getUserById(id_user) {
+        console.log(id_user);
+        const utl = `${this.url_app}/${id_user}`;
+        const headers = this.getHeadersToken();
+        return this._http.get(utl, {headers: headers}).map(data => {
+            console.log(data.json());
+            return data.json();
+        });
     }
 
     getHeader() {
@@ -33,6 +44,13 @@ export class UserService {
         return headers;
     }
 
+    getHeadersToken() {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', localStorage.getItem('tk_plug'));
+
+        return headers;
+    }
 
 
 }

@@ -16,6 +16,16 @@ export class Auth0Service {
         }
         return false;
     }
+    getUserData(){
+        if(localStorage.getItem('user_data')){
+            return JSON.parse(localStorage.getItem('user_data'));
+        }
+        return new Object({
+
+        })
+
+
+    }
 
 
 }
