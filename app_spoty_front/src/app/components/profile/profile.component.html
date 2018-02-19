@@ -1,15 +1,15 @@
 <div class="row">
 
   <div class="col-md-12">
-    <div class="alert alert-danger" *ngIf="this.is_ready &&  this.UserRegister.invalid">
+    <div class="alert alert-danger" *ngIf="this.is_ready &&  this.UserDataUpdate.invalid">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       <strong>Existen algunos campos que son obligatorios</strong>
     </div>
     <div class="alert alert-success" *ngIf="this.is_succes">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <strong>Se guardó correctamente</strong>
+      <strong>Se actualizó correctamente</strong>
     </div>
-    <form  [formGroup]="UserDataUpdate" (ngSubmit)="validar_registro_usuario()" novalidate>
+    <form  [formGroup]="UserDataUpdate" (ngSubmit)="actualizaUsuario()" novalidate>
       <div class="row">
         <div class="form-group col-md-12">
           <label for="nombre" class="col-form-label">Nombre</label>
@@ -51,6 +51,23 @@
                  formControlName="email"
                  placeholder="ejemplo@ejemplo.com">
         </div>
+
+        <div class="col-md-12 mb-12">
+          <label for="form1-state">Estado</label>
+          <select class="custom-select d-block col-md-8" id="form1-state"
+                  [ngClass]="{error:  mostrar_errors('id_estado',is_ready)}"
+                  formControlName="id_estado"
+                  required>
+            <option value="">Seleccione una opción</option>
+            <option *ngFor="let estado_index of this.estados"
+                    value="{{estado_index._id}}">{{estado_index.estado}}
+            </option>
+
+          </select>
+        </div>
+      </div>
+      <div class="row">
+
         <div class="col-md-6 mb-4">
           <label for="form1-password">Password</label>
           <input type="password"
@@ -74,26 +91,6 @@
                  required
                  minlength="5"
           >
-        </div>
-        <div class="col-md-12 mb-12">
-          <label for="form1-state">Estado</label>
-          <select class="custom-select d-block col-md-8" id="form1-state"
-                  [ngClass]="{error:  mostrar_errors('id_estado',is_ready)}"
-                  formControlName="id_estado"
-                  required>
-            <option value="">Seleccione una opción</option>
-            <option *ngFor="let estado_index of this.estados"
-                    value="{{estado_index._id}}">{{estado_index.estado}}
-            </option>
-
-          </select>
-        </div>
-      </div>
-      <div class="row">
-
-        <div class="col-md-8 mb-8 "  >
-
-
         </div>
       </div>
       <div class="row">

@@ -223,13 +223,31 @@ function getImageUser(req, res) {
         }
     })
 }
-function getUserByid(req,res){
-    var id_usuario = req.params.id;
-    console.log(id_usuario);
-    res.status(401).send({
-        message: 'No existe la imagen',
 
-    });
+function getUserByid(req, res) {
+    var id_usuario = req.params.id;
+    if (id_usuario) {
+        User.findOne({
+            _id: id_usuario
+        }, (error, user_data) => {
+            if (error)
+                return res.status(500).send({
+                    message: "Error al procesar su solicitud"
+                });
+           // console.log(user_data);
+            user_data.password = '';
+            user_data.password2='';
+            res.status(200).send({
+                message: 'Todo bien',
+                user: user_data
+            })
+        })
+    } else {
+        res.status(401).send({
+            message: 'No se existen los parámetros necesarios',
+
+        });
+    }
 }
 
 

@@ -20,23 +20,26 @@ export class UserService {
             return data.json();
         });
     }
-
+    getUserById(id_user) {
+        console.log(id_user);
+        const utl = `${this.url_app}/user/${id_user}`;
+        const headers = this.getHeadersToken();
+        return this._http.get(utl, {headers: headers}).map(data => {
+            return data.json();
+        });
+    }
     login(data) {
         const url = `${this.url_app}/login`;
         const headers = this.getHeader();
         return this._http.post(url, data, {headers}).map(data => data.json());
     }
+     updateUser(id_usuario,data){
+         const url = `${this.url_app}/edit/${id_usuario}`;
+         const headers = this.getHeadersToken();
+         return this._http.put(url, data, {headers}).map(data => data.json());
+     }
 
-    getUserById(id_user) {
-        console.log(id_user);
-        const utl = `${this.url_app}/${id_user}`;
-        const headers = this.getHeadersToken();
-        return this._http.get(utl, {headers: headers}).map(data => {
-            console.log(data.json());
-            return data.json();
-        });
-    }
-
+    /*HELPERS to Headers*/
     getHeader() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -45,11 +48,36 @@ export class UserService {
     }
 
     getHeadersToken() {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', localStorage.getItem('tk_plug'));
-
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('tk_plug')
+        });
         return headers;
+    }
+
+    /*
+  This is magic function, implements
+  add class for show or hide  errors for a input form
+  your  validations laws
+  HELPERS
+    */
+    mostrar_errores(object_validate, controls_name, is_ready) {
+        if (object_validate.controls.hasOwnProperty(controls_name) && is_ready) {
+
+            const control = object_validate.controls[controls_name];
+            if (control.invalid === true) {
+                if (control.errors.hasOwnProperty('required') && control.errors.required === true) {
+                    return true;
+                }
+                if (control.errors.hasOwnProperty('minlength') && control.errors.minlength.actualLength < control.errors.minlength.requiredLength) {
+                    return true;
+                }
+                if (control.errors.hasOwnProperty('pattern') && control.errors.pattern === true) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 

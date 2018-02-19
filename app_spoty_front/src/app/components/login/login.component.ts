@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
         is_valid: false,
     });
 
-    constructor(public router: Router, private userLogin: UserService,private _auth0:Auth0Service) {
-        if(this._auth0.isAuthenticated()){
+    constructor(public router: Router, private userLogin: UserService, private _auth0: Auth0Service) {
+        if (this._auth0.isAuthenticated()) {
             this.router.navigate(['/dashboard']);
         }
         this.LoginData = new FormGroup({
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
                     this.mostrar_alert.class_css = 'alert-success';
                     this.mostrar_alert.msg = 'Todo salió bien';
                     localStorage.setItem('tk_plug', data.token);
-                    localStorage.setItem('user_data',JSON.stringify(data.user_data));
+                    localStorage.setItem('user_data', JSON.stringify(data.user_data));
                     this.router.navigate(['dashboard'])
                 } else {
                     this.mostrar_alert.class_css = 'alert-danger';
@@ -56,6 +56,19 @@ export class LoginComponent implements OnInit {
                 setTimeout(() => {
                     this.mostrar_alert.is_valid = false;
                 }, 3000);
+            }, (error: any) => {
+
+
+                if (error) {
+                    error = error.json();
+                    console.log(error);
+                    this.mostrar_alert.is_valid = true;
+                    this.mostrar_alert.class_css = 'alert-danger';
+                    this.mostrar_alert.msg = error.message;
+                    setTimeout(() => {
+                        this.mostrar_alert.is_valid = false;
+                    }, 3000);
+                }
             });
         }
 
@@ -66,28 +79,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['registro']);
     }
 
-    /*
-   This is magic function, implements
-   add class for show or hide  errors for a input form
-   your  validations laws
-     */
-    mostrar_errors(controls_name: string, is_ready: boolean): boolean {
-        if (this.LoginData.controls.hasOwnProperty(controls_name) && is_ready) {
 
-            const control = this.LoginData.controls[controls_name];
-            if (control.invalid === true) {
-                if (control.errors.hasOwnProperty('required') && control.errors.required === true) {
-                    return true;
-                }
-                if (control.errors.hasOwnProperty('minlength') && control.errors.minlength.actualLength < control.errors.minlength.requiredLength) {
-                    return true;
-                }
-                if (control.errors.hasOwnProperty('pattern') && control.errors.pattern === true) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    mostrar_errors(controls_name: string, is_ready: boolean): boolean {
+        return this.userLogin.mostrar_errores(this.LoginData, controls_name, this.is_ready);
     }
 
 
